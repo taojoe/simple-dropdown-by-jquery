@@ -1,0 +1,42 @@
+<html>
+  <head>
+	<title>simple dropdown by jquery</title>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  </head>
+  <body>
+	<style>
+	  .dropdown{position:relative;}
+	  .dropdown ul {position:absolute;display:none;}
+	</style>
+	<div class="dropdown">
+	  <label>dropdown 1</label>
+	  <ul>
+		<li><a href="javascript:void(0);">aa</a></li>
+		<li><a href="javascript:void(0);">aa</a></li>
+	  </ul>
+	</div>
+	<div class="dropdown" style="margin-top:100px;">
+	  <label>dropdown 2</label>
+	  <ul>
+		<li><a href="javascript:void(0);">aa</a></li>
+		<li><a href="javascript:void(0);">aa</a></li>
+	  </ul>
+	</div>
+	<script>
+/*
+ * This is the natural way to make a dropdown things.
+ * To avoid conflict between dropdowns, never use the "return false" to stop event propagation.
+ * Use setTimeout to make sure the collapse not triggered within the label click event.
+ */
+$('.dropdown label').click(function(){
+	var $ul=$(this).parent().children('ul');
+	if($ul.is(':hidden')){
+	    $ul.show();
+	    setTimeout(function(){
+	        $(document).one('click', function(){ $ul.hide();});
+	    });
+    }
+});
+	</script>
+  </body>
+</html>
